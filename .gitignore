@@ -1,5 +1,8 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 /__pycache__
+resources/__pycache__
+common/__pycache__
+models/__pycache__
 
 .idea

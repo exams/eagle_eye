@@ -9,5 +9,6 @@ class Task(db.Document):
     path = db.StringField()
     create_time = DateTimeField(default=datetime.datetime.utcnow)
     process = db.IntField(min_value=0, max_value=100)
+    finish_time = DateTimeField()
 
 
