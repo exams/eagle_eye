@@ -8,3 +8,11 @@ class Papers(Resource):
 
     def post(self):
         pass
+
+class Paper(Resource):
+
+    def get(self):
+        pass
+
+    def post(self):
+        pass
