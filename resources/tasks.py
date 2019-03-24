@@ -3,6 +3,7 @@ from models.tasks import Task
 from common import platform_os_type
 from common.config import windows_temp_store_prefix, linux_temp_store_prefix
 import os
+from common.eagle_scan_thread import EagleScanThread
 
 
 post_parser = reqparse.RequestParser()
@@ -16,8 +17,13 @@ post_parser.add_argument(
 )
 
 task_fields = {
+    '_id': fields.String,
     'name': fields.String,
-    'process': fields.Integer
+    'process': fields.Integer,
+    'pieces': fields.Integer,
+    'processed': fields.Integer,
+    'progress': fields.Integer,
+    'create_time': fields.DateTime
 }
 
 
@@ -43,8 +49,12 @@ class TasksApi(Resource):
         # 读取新生成的目录下的文件数量
         task.pieces = len(os.listdir(task.path))
 
-        task.save()
-        print("save scecess")
+        task = task.save()
+        # 任务保存完成后,启动线程处理任务
+        t = EagleScanThread(task)
+        t.start()
+
+        return task
 
 
 class TaskApi(Resource):
