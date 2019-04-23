@@ -12,12 +12,13 @@ from wand.color import Color
 from PyPDF2 import PdfFileReader, PdfFileWriter
 
 
-class EagleScanThread(threading.Thread):
+class SheetProcessThread(threading.Thread):
 
     def __init__(self, task):
-        super(EagleScanThread, self).__init__()
+        super(SheetProcessThread, self).__init__()
         self.task = task
 
+    # 抓换pdf文件为图片
     def _convert_pdf2img(self, file, work_path, temp_store_path):
         file_name = work_path + os.sep + file
         pdf_file = PdfFileReader(file_name, strict=False)
@@ -36,6 +37,9 @@ class EagleScanThread(threading.Thread):
         img.save(filename=img_path)
         img.destroy()
 
+    # 对图片进行旋转.
+
+    # 对图片进行处理
     def shape(self, file):
         img = cv2.imread(file)
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)

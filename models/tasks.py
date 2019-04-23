@@ -7,6 +7,7 @@ import datetime
 class Task(db.Document):
     # 字段
     name = db.StringField(max_length=30, required=True)
+    paper_id = db.StringField()
     path = db.StringField()
     pieces = db.IntField(min_value=0)
     processed = db.IntField(min_value=0, default=0)

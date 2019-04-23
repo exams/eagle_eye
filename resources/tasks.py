@@ -38,6 +38,7 @@ class TasksApi(Resource):
         task = Task()
         # task name 根据试卷名称生成
         task.name = args.name
+        task.paper_id = args.paper_id
         # 路径根据操作系统路径前缀和试卷id生成
         if platform_os_type.lower().index('windows') >= 0:
             task.path = windows_temp_store_prefix + args.paper_id
