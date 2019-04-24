@@ -6,3 +6,4 @@ common/__pycache__
 models/__pycache__
 
 .idea
+magick-*
